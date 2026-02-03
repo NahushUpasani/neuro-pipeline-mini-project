@@ -9,6 +9,7 @@ Goal:
 - Produce defensible subject-level outputs
 """
 
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
@@ -133,3 +134,30 @@ INTERPRETATION NOTES:
 - Median is safer under skew/outliers than mean
 - These outputs are defensible and ML-ready
 """)
+
+# ---------------------------------------
+# STEP 7 - VISUALIZATION (AFTER QC)
+# ---------------------------------------
+
+
+plt.figure(figsize=(8, 5))
+
+for stat, df_plot in [
+    ("Median", agg_median),
+    ("Mean", agg_mean)
+]:
+    plt.plot(
+        df_plot["condition"],
+        df_plot.iloc[:, 2],  # median_rt or mean_rt
+        marker="o",
+        label=stat
+    )
+
+plt.title("Reaction Time by Condition (Post-QC)")
+plt.xlabel("Condition")
+plt.ylabel("Reaction Time (ms)")
+plt.legend()
+plt.grid(True)
+
+plt.tight_layout()
+plt.show()

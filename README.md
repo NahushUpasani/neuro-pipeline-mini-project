@@ -15,3 +15,4 @@ raw data → trial-level QC → subject-level QC → valid dataset → aggregati
 ## How to run
 ```bash
 python pipeline_demo.py
+This script intentionally includes extreme RT artifacts to demonstrate why QC must precede aggregation.
